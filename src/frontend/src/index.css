@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.625rem;
+        --background: 0.145 0 0;
+        --foreground: 0.985 0 0;
+        --card: 0.205 0 0;
+        --card-foreground: 0.985 0 0;
+        --popover: 0.269 0 0;
+        --popover-foreground: 0.985 0 0;
+        --primary: 0.922 0 0;
+        --primary-foreground: 0.205 0 0;
+        --secondary: 0.269 0 0;
+        --secondary-foreground: 0.985 0 0;
+        --muted: 0.269 0 0;
+        --muted-foreground: 0.708 0 0;
+        --accent: 0.371 0 0;
+        --accent-foreground: 0.985 0 0;
+        --destructive: 0.704 0.191 22.216;
+        --destructive-foreground: 0.205 0 0;
+        --border: 1 0 0 / 10%;
+        --input: 1 0 0 / 15%;
+        --ring: 0.556 0 0;
+        
+        /* Romantic color palette */
+        --romantic-pink: oklch(0.75 0.18 350);
+        --romantic-light: oklch(0.85 0.08 350);
+        --romantic-gold: oklch(0.85 0.15 85);
+        --romantic-red: oklch(0.55 0.22 25);
+        --romantic-red-dark: oklch(0.45 0.22 25);
+        --romantic-green: oklch(0.60 0.18 145);
+        --romantic-green-dark: oklch(0.50 0.18 145);
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .font-heading {
+        font-family: 'Dancing Script', cursive;
+    }
+}
+
+@layer utilities {
+    /* Glitch effect for 404 text */
+    .glitch-text {
+        color: oklch(var(--romantic-pink));
+        animation: glitch 1s infinite;
+        text-shadow: 
+            2px 2px 0 oklch(0.65 0.25 350),
+            -2px -2px 0 oklch(0.70 0.20 240);
+    }
+    
+    .glitch-text-intense {
+        color: oklch(var(--romantic-pink));
+        animation: glitch-intense 0.5s infinite;
+    }
+    
+    @keyframes glitch {
+        0%, 100% {
+            text-shadow: 
+                2px 2px 0 oklch(0.65 0.25 350),
+                -2px -2px 0 oklch(0.70 0.20 240);
+        }
+        25% {
+            text-shadow: 
+                -2px 2px 0 oklch(0.70 0.20 240),
+                2px -2px 0 oklch(0.65 0.25 350);
+        }
+        50% {
+            text-shadow: 
+                2px -2px 0 oklch(0.65 0.25 350),
+                -2px 2px 0 oklch(0.70 0.20 240);
+        }
+        75% {
+            text-shadow: 
+                -2px -2px 0 oklch(0.70 0.20 240),
+                2px 2px 0 oklch(0.65 0.25 350);
+        }
+    }
+    
+    @keyframes glitch-intense {
+        0%, 100% {
+            transform: translate(0);
+            text-shadow: 
+                3px 3px 0 oklch(0.65 0.25 350),
+                -3px -3px 0 oklch(0.70 0.20 240);
+        }
+        25% {
+            transform: translate(-5px, 5px);
+            text-shadow: 
+                -3px 3px 0 oklch(0.70 0.20 240),
+                3px -3px 0 oklch(0.65 0.25 350);
+        }
+        50% {
+            transform: translate(5px, -5px);
+            text-shadow: 
+                3px -3px 0 oklch(0.65 0.25 350),
+                -3px 3px 0 oklch(0.70 0.20 240);
+        }
+        75% {
+            transform: translate(-5px, -5px);
+            text-shadow: 
+                -3px -3px 0 oklch(0.70 0.20 240),
+                3px 3px 0 oklch(0.65 0.25 350);
+        }
+    }
+    
+    /* Glow effects */
+    .glow-text {
+        text-shadow: 
+            0 0 20px oklch(var(--romantic-gold) / 0.5),
+            0 0 40px oklch(var(--romantic-gold) / 0.3);
+    }
+    
+    .glow-text-strong {
+        text-shadow: 
+            0 0 30px oklch(var(--romantic-gold) / 0.8),
+            0 0 60px oklch(var(--romantic-gold) / 0.5),
+            0 0 90px oklch(var(--romantic-gold) / 0.3);
+    }
+    
+    /* Floating hearts animation */
+    @keyframes float-up {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.6;
+        }
+        90% {
+            opacity: 0.6;
+        }
+        100% {
+            transform: translateY(-110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    
+    .animate-float-up {
+        animation: float-up linear infinite;
+    }
+    
+    /* Falling hearts animation */
+    @keyframes fall-down {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    
+    .animate-fall-down {
+        animation: fall-down linear infinite;
+    }
+    
+    /* Shake animation for NO button */
+    @keyframes shake {
+        0%, 100% { transform: translateX(0) scale(1); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px) scale(1); }
+        20%, 40%, 60%, 80% { transform: translateX(5px) scale(1); }
+    }
+    
+    .animate-shake {
+        animation: shake 0.5s infinite;
+    }
+    
+    /* Fade in animation */
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    .animate-fade-in {
+        animation: fade-in 0.3s ease-out;
+    }
+    
+    /* Fade in up animation */
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .animate-fade-in-up {
+        animation: fade-in-up 0.8s ease-out;
+    }
+    
+    /* Bounce in animation */
+    @keyframes bounce-in {
+        0% {
+            opacity: 0;
+            transform: scale(0.3);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        70% {
+            transform: scale(0.9);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+    .animate-bounce-in {
+        animation: bounce-in 0.6s ease-out;
+    }
+    
+    /* Glitch flash for transition */
+    @keyframes glitch-flash {
+        0%, 100% {
+            background: oklch(0.1 0 0);
+        }
+        10%, 30%, 50%, 70%, 90% {
+            background: oklch(0.9 0 0);
+        }
+        20%, 40%, 60%, 80% {
+            background: oklch(0.65 0.25 350);
+        }
+    }
+    
+    .animate-glitch-flash {
+        animation: glitch-flash 2s ease-in-out;
+    }
+    
+    /* Shake and fade for transition */
+    @keyframes shake-fade {
+        0% {
+            opacity: 1;
+            transform: translate(0);
+        }
+        10%, 30%, 50%, 70% {
+            transform: translate(-10px, 10px);
+        }
+        20%, 40%, 60% {
+            transform: translate(10px, -10px);
+        }
+        80% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            transform: translate(0);
+        }
+    }
+    
+    .animate-shake-fade {
+        animation: shake-fade 2s ease-out;
+    }
+    
+    /* Hearts pattern background */
+    .bg-hearts-pattern {
+        background-image: radial-gradient(circle, oklch(var(--romantic-pink) / 0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+    }
+}

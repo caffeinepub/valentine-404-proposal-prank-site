@@ -1,0 +1,275 @@
+{
+  "kind": "build_request",
+  "title": "Single-page Valentine’s Day proposal prank site with glitchy 404 intro, proposal CTA, and celebratory YES flow",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a single-page, fully mobile-responsive Valentine’s Day prank website with three client-side scenes (404 prank screen → proposal screen → victory screen) and smooth transitions between them (no navigation/routing required).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Create a fun, romantic, single-page Valentine's Day proposal prank website... fully mobile-responsive... work great on phones."
+        ]
+      },
+      "acceptanceCriteria": [
+        "App renders as one page with internal scene/state switching (no URL/route changes required).",
+        "All scenes are usable on common phone viewports (e.g., 375x667) without horizontal scrolling.",
+        "Keyboard + touch interactions work (tap triggers where hover would not)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement the initial fake 404 prank screen with: (1) huge centered “404” text using a glitch animation (flicker + RGB/pink/red/blue shifts), (2) headline text exactly: “Love Not Found 💔”, (3) subtitle text exactly: “Error: Valentine Missing... or maybe she's just too shy? 😏 Try clicking around or wait a sec...”.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Start with a fake 404 error page to prank her: Huge centered \"404\" with glitch animation... Below it: \"Love Not Found 💔\" ... Subtitle: \"Error: Valentine Missing... or maybe she's just too shy? 😏 Try clicking around or wait a sec...\""
+        ]
+      },
+      "acceptanceCriteria": [
+        "404 screen shows the three text elements with the exact strings provided.",
+        "The “404” has an obvious glitch/flicker effect including noticeable color channel shifts.",
+        "Typography is legible on mobile and maintains centered layout."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add a cracked/broken heart animation on the 404 screen that visually appears to crack more over time (progressive cracking effect).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Add a cracked/broken animated heart that cracks more over time."
+        ]
+      },
+      "acceptanceCriteria": [
+        "A heart graphic appears on the 404 screen.",
+        "The heart shows a progressive crack growth effect over time without user interaction.",
+        "Animation loops or reaches a final cracked state without causing layout shifts."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a dark romantic background for the 404 screen: black-to-deep pink/purple gradient with faint floating heart particles moving subtly.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Dark romantic background (black to deep pink/purple gradient) with faint floating heart particles."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Background is a dark gradient (black to deep pink/purple).",
+        "Heart particles are visible but subtle and do not obstruct text readability.",
+        "Particle animation performs smoothly on mobile (no severe jank)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Trigger a dramatic “glitch-fix” transition from the 404 prank screen to the proposal screen after ~10–15 seconds OR immediately on any click/tap or mousemove: screen flashes/glitches, 404 elements shake and fade out, then proposal content appears.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "After about 10-15 seconds (or on any click/mousemove), do a dramatic glitch-fix transition: screen flashes and glitches, the 404 elements shake and fade out, then reveal the real proposal."
+        ]
+      },
+      "acceptanceCriteria": [
+        "If the user does nothing, transition happens automatically within 10–15 seconds.",
+        "If the user clicks/taps anywhere (or moves the mouse on desktop), transition happens immediately.",
+        "Transition includes: flash/glitch overlay + 404 element shake + fade-out before proposal appears."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Implement the proposal screen with the heading text exactly: “Wait... FOUND IT! ❤️ Will you be my Valentine, My Love?” and two large buttons labeled YES and NO styled as requested (YES green with white text and heart emoji; NO red with white text).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "On the proposal screen: Big elegant script text: \"Wait... FOUND IT! ❤️ Will you be my Valentine, My Love?\" Two large buttons: YES (green background, white text, heart emoji)... NO (red background, white text)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Heading matches the exact provided string.",
+        "YES button is green with white text and includes a heart emoji in the label.",
+        "NO button is red with white text, both buttons are large and easy to tap on mobile."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Implement the YES flow: on YES click, replace the whole page with a victory screen that includes a massive confetti burst plus raining hearts animation, and displays a romantic message. Because the user-provided message contains explicit sexual content, implement a clearly marked constant/string placeholder for the final message text and ship a non-explicit (PG-13) default message instead.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "YES ... when clicked, replace the whole page with a victory screen: massive confetti explosion, raining hearts, and this exact romantic message: \"I knew you'd say YES, my love! ... Can't wait to make you blush... then beg. 😈❤️. Forever yours, partner in crime 🔥\""
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking YES switches to a distinct victory screen (proposal UI is no longer visible).",
+        "A confetti burst effect happens immediately on entering the victory screen and heart-rain continues afterward.",
+        "Victory screen message text is sourced from a single clearly identified constant/variable (easy to edit).",
+        "The shipped default message avoids explicit sexual content while keeping a romantic playful tone."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Implement the NO button evasive behavior to be funny and difficult to click on both desktop and mobile: on hover (desktop) or touch start (mobile), the button smoothly jumps to a random on-screen position while staying fully visible within viewport bounds. Escalate behavior by hover/touch count: 1st → shrink + change text to “Please don't... 😭”; 2nd → moves faster + text “I'm scared!”; 3rd+ → shakes/glitches + text becomes “YES PLEASE!”. If NO is somehow clicked, show “Rejection Denied! 💔 Try again~” and reset the NO button state.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "NO ... On hover or touch: the button smoothly jumps to a random position on screen. Escalation: 1st hover → shrinks + text \"Please don't... 😭\" 2nd hover → moves faster + text \"I'm scared!\" 3rd+ hover → shakes/glitches + text becomes \"YES PLEASE!\" If somehow clicked: show \"Rejection Denied! 💔 Try again~\" and reset the button."
+        ]
+      },
+      "acceptanceCriteria": [
+        "On desktop, hovering the NO button moves it smoothly to a new random position within viewport bounds.",
+        "On mobile, initiating a tap/touch on NO triggers the same evasive move behavior.",
+        "The 1st/2nd/3rd+ interaction states change size/speed/animation and button label exactly as specified.",
+        "If NO is clicked, the denial message appears exactly and the NO button resets back to initial behavior/text afterward."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Apply the requested overall style consistently across all scenes: romantic/cute pink/red/white/gold accents, and use Google Fonts with Dancing Script for headings and Poppins for body text.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Overall style: Romantic and cute. Use Google Fonts (Dancing Script for headings, Poppins for body). Pink, red, white, gold accents."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dancing Script is applied to headings; Poppins is applied to body text.",
+        "Color palette uses pink/red/white/gold accents consistently across scenes.",
+        "All major UI elements remain readable and visually coherent on mobile."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Add a small, unobtrusive music toggle control that can play/pause subtle looping romantic background music. If no audio URL is bundled, include a clearly commented placeholder showing where to add a free loop URL or local file reference.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Add a small toggle button for subtle background romantic music (you can pick a free soft loop or comment where to add the URL)."
+        ]
+      },
+      "acceptanceCriteria": [
+        "A visible toggle control exists on all scenes (or persists across scene changes).",
+        "Toggling changes between play and pause states without errors.",
+        "If no audio asset is included, code includes a clear comment indicating where to add the audio URL/path."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Add an optional “cute hugging characters” image area on the victory screen, but do not use copyrighted characters (e.g., Zootopia). Instead, render an original, cute, romance-themed illustration asset (or leave the section hidden unless an image is provided).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Also add an optional cute photo of Zootopia characters Judy Hopps and Nick Wilde hugging."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Victory screen supports showing an optional image block.",
+        "No copyrighted character imagery is included in generated assets by default.",
+        "If the optional image is absent, layout still looks complete and intentional."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Provide project deployment readiness for a shareable URL on the Internet Computer by ensuring the app builds and runs cleanly with the provided template tooling; include minimal, clear deploy/run instructions in-project (e.g., in a visible documentation section or comments) that result in a publicly shareable canister URL after deployment.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Deploy it as a live website so I get a shareable URL right away."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Project builds without errors in the standard template workflow.",
+        "There are clear instructions (in a dedicated doc file or prominent comment) describing how to deploy and obtain a shareable URL.",
+        "Frontend does not depend on any external backend data to function (site works as a static interactive experience)."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Choose and apply one coherent, creative visual theme direction for the app (beyond the specified romantic palette), including background styling details, button/typography styling, and animation “feel,” and enforce it consistently across the 404, proposal, and victory scenes (avoid a generic default look).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Keep everything clean and interactive."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Visual style is consistent across all scenes (same design language for spacing, typography, and effects).",
+        "Theme feels intentionally “cute romantic” and not like unstyled template UI.",
+        "Theme does not default to a blue/purple tech aesthetic; it remains aligned to romantic pink/red/gold."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend must use React + TypeScript with Tailwind and shadcn/ui components via composition; do not edit files under frontend/src/components/ui (read-only).",
+    "Do not edit files under immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "Backend must remain a single Motoko actor; avoid adding extra canisters/services.",
+    "Do not include explicit sexual content in shipped default user-facing copy; keep any stronger wording as an editable placeholder only.",
+    "Do not generate or bundle copyrighted character artwork (e.g., Zootopia characters); use original artwork instead."
+  ],
+  "nonGoals": [
+    "Internet Identity authentication.",
+    "User accounts, data persistence, or storing responses on-chain.",
+    "Multi-page routing or complex navigation.",
+    "Third-party APIs, analytics, or external databases.",
+    "Real-time communication features (chat, websockets)."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Original cute romantic illustration of two anthropomorphic woodland characters (a bunny and a fox) hugging, pastel pink/red palette (hugging-couple-illustration.dim_1200x800.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "Build playful single-page romantic prank/proposal experiences with strong mobile-first animations and interactions."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

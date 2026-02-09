@@ -1,2 +1,3 @@
-# valentine-404-proposal-prank-site
-Exported from Caffeine project: Valentine 404 Proposal Prank Site
+## Valentine 404 Proposal Prank Site
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

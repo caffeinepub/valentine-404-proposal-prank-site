@@ -1,0 +1,259 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-single-page-fully-mobile-responsive-valentine-s-day-prank-website-with-three-client-side-scenes-404-prank-screen-proposal-screen-victory-screen-and-smooth-transitions-between-them-no-navigation-routing-required",
+      "featureTitle": "Create a single-page, fully mobile-responsive Valentine’s Day prank website with three client-side scenes (404 prank screen → proposal screen → victory screen) and smooth transitions between them (no navigation/routing required).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/MusicToggle.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-initial-fake-404-prank-screen-with-1-huge-centered-404-text-using-a-glitch-animation-flicker-rgb-pink-red-blue-shifts-2-headline-text-exactly-love-not-found-3-subtitle-text-exactly-error-valentine-missing-or-maybe-she-s-just-too-shy-try-clicking-around-or-wait-a-sec",
+      "featureTitle": "Implement the initial fake 404 prank screen with: (1) huge centered “404” text using a glitch animation (flicker + RGB/pink/red/blue shifts), (2) headline text exactly: “Love Not Found 💔”, (3) subtitle text exactly: “Error: Valentine Missing... or maybe she's just too shy? 😏 Try clicking around or wait a sec...”.",
+      "files": [
+        "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-cracked-broken-heart-animation-on-the-404-screen-that-visually-appears-to-crack-more-over-time-progressive-cracking-effect",
+      "featureTitle": "Add a cracked/broken heart animation on the 404 screen that visually appears to crack more over time (progressive cracking effect).",
+      "files": [
+        "frontend/src/components/valentine/CrackingHeart.tsx",
+        "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-dark-romantic-background-for-the-404-screen-black-to-deep-pink-purple-gradient-with-faint-floating-heart-particles-moving-subtly",
+      "featureTitle": "Add a dark romantic background for the 404 screen: black-to-deep pink/purple gradient with faint floating heart particles moving subtly.",
+      "files": [
+        "frontend/src/components/valentine/HeartParticles.tsx",
+        "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-trigger-a-dramatic-glitch-fix-transition-from-the-404-prank-screen-to-the-proposal-screen-after-10-15-seconds-or-immediately-on-any-click-tap-or-mousemove-screen-flashes-glitches-404-elements-shake-and-fade-out-then-proposal-content-appears",
+      "featureTitle": "Trigger a dramatic “glitch-fix” transition from the 404 prank screen to the proposal screen after ~10–15 seconds OR immediately on any click/tap or mousemove: screen flashes/glitches, 404 elements shake and fade out, then proposal content appears.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/GlitchFixTransition.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-proposal-screen-with-the-heading-text-exactly-wait-found-it-will-you-be-my-valentine-my-love-and-two-large-buttons-labeled-yes-and-no-styled-as-requested-yes-green-with-white-text-and-heart-emoji-no-red-with-white-text",
+      "featureTitle": "Implement the proposal screen with the heading text exactly: “Wait... FOUND IT! ❤️ Will you be my Valentine, My Love?” and two large buttons labeled YES and NO styled as requested (YES green with white text and heart emoji; NO red with white text).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/scenes/ProposalScene.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-yes-flow-on-yes-click-replace-the-whole-page-with-a-victory-screen-that-includes-a-massive-confetti-burst-plus-raining-hearts-animation-and-displays-a-romantic-message-because-the-user-provided-message-contains-explicit-sexual-content-implement-a-clearly-marked-constant-string-placeholder-for-the-final-message-text-and-ship-a-non-explicit-pg-13-default-message-instead",
+      "featureTitle": "Implement the YES flow: on YES click, replace the whole page with a victory screen that includes a massive confetti burst plus raining hearts animation, and displays a romantic message. Because the user-provided message contains explicit sexual content, implement a clearly marked constant/string placeholder for the final message text and ship a non-explicit (PG-13) default message instead.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/ConfettiBurst.tsx",
+        "frontend/src/components/valentine/HeartRain.tsx",
+        "frontend/src/components/valentine/scenes/VictoryScene.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-no-button-evasive-behavior-to-be-funny-and-difficult-to-click-on-both-desktop-and-mobile-on-hover-desktop-or-touch-start-mobile-the-button-smoothly-jumps-to-a-random-on-screen-position-while-staying-fully-visible-within-viewport-bounds-escalate-behavior-by-hover-touch-count-1st-shrink-change-text-to-please-don-t-2nd-moves-faster-text-i-m-scared-3rd-shakes-glitches-text-becomes-yes-please-if-no-is-somehow-clicked-show-rejection-denied-try-again-and-reset-the-no-button-state",
+      "featureTitle": "Implement the NO button evasive behavior to be funny and difficult to click on both desktop and mobile: on hover (desktop) or touch start (mobile), the button smoothly jumps to a random on-screen position while staying fully visible within viewport bounds. Escalate behavior by hover/touch count: 1st → shrink + change text to “Please don't... 😭”; 2nd → moves faster + text “I'm scared!”; 3rd+ → shakes/glitches + text becomes “YES PLEASE!”. If NO is somehow clicked, show “Rejection Denied! 💔 Try again~” and reset the NO button state.",
+      "files": [
+        "frontend/src/components/valentine/EvasiveNoButton.tsx",
+        "frontend/src/components/valentine/scenes/ProposalScene.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-the-requested-overall-style-consistently-across-all-scenes-romantic-cute-pink-red-white-gold-accents-and-use-google-fonts-with-dancing-script-for-headings-and-poppins-for-body-text",
+      "featureTitle": "Apply the requested overall style consistently across all scenes: romantic/cute pink/red/white/gold accents, and use Google Fonts with Dancing Script for headings and Poppins for body text.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-small-unobtrusive-music-toggle-control-that-can-play-pause-subtle-looping-romantic-background-music-if-no-audio-url-is-bundled-include-a-clearly-commented-placeholder-showing-where-to-add-a-free-loop-url-or-local-file-reference",
+      "featureTitle": "Add a small, unobtrusive music toggle control that can play/pause subtle looping romantic background music. If no audio URL is bundled, include a clearly commented placeholder showing where to add a free loop URL or local file reference.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/MusicToggle.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-optional-cute-hugging-characters-image-area-on-the-victory-screen-but-do-not-use-copyrighted-characters-e-g-zootopia-instead-render-an-original-cute-romance-themed-illustration-asset-or-leave-the-section-hidden-unless-an-image-is-provided",
+      "featureTitle": "Add an optional “cute hugging characters” image area on the victory screen, but do not use copyrighted characters (e.g., Zootopia). Instead, render an original, cute, romance-themed illustration asset (or leave the section hidden unless an image is provided).",
+      "files": [
+        "frontend/src/components/valentine/scenes/VictoryScene.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-provide-project-deployment-readiness-for-a-shareable-url-on-the-internet-computer-by-ensuring-the-app-builds-and-runs-cleanly-with-the-provided-template-tooling-include-minimal-clear-deploy-run-instructions-in-project-e-g-in-a-visible-documentation-section-or-comments-that-result-in-a-publicly-shareable-canister-url-after-deployment",
+      "featureTitle": "Provide project deployment readiness for a shareable URL on the Internet Computer by ensuring the app builds and runs cleanly with the provided template tooling; include minimal, clear deploy/run instructions in-project (e.g., in a visible documentation section or comments) that result in a publicly shareable canister URL after deployment.",
+      "files": [
+        "frontend/DEPLOYMENT.md",
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-choose-and-apply-one-coherent-creative-visual-theme-direction-for-the-app-beyond-the-specified-romantic-palette-including-background-styling-details-button-typography-styling-and-animation-feel-and-enforce-it-consistently-across-the-404-proposal-and-victory-scenes-avoid-a-generic-default-look",
+      "featureTitle": "Choose and apply one coherent, creative visual theme direction for the app (beyond the specified romantic palette), including background styling details, button/typography styling, and animation “feel,” and enforce it consistently across the 404, proposal, and victory scenes (avoid a generic default look).",
+      "files": [
+        "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
+        "frontend/src/components/valentine/scenes/ProposalScene.tsx",
+        "frontend/src/components/valentine/scenes/VictoryScene.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Valentine 404 Proposal Prank (single-page scenes with glitch + proposal + victory)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build a single-page, mobile-first React experience with three internal scenes (404 prank → proposal → victory) and smooth state-based transitions (no routing).",
+      "acceptanceCriteria": [
+        "App renders as one page with internal scene/state switching (no URL/route changes required).",
+        "All scenes are usable on common phone viewports (e.g., 375x667) without horizontal scrolling.",
+        "Keyboard + touch interactions work (tap triggers where hover would not)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the single-page scene state machine (404/prank, proposal, victory) with transition orchestration and shared layout container; ensure no routing/URL changes are used."
+        },
+        {
+          "path": "frontend/src/components/valentine/SceneShell.tsx",
+          "operation": "create",
+          "description": "Add a shared full-viewport scene shell handling safe-area padding, centering, and consistent spacing across scenes to keep mobile responsiveness and avoid horizontal scrolling."
+        },
+        {
+          "path": "frontend/src/components/valentine/MusicToggle.tsx",
+          "operation": "create",
+          "description": "Create a persistent overlay control (rendered by App) that stays visible across all scene states for play/pause. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement the fake 404 prank scene with exact copy and a prominent glitching “404” headline (flicker + RGB shifts).",
+      "acceptanceCriteria": [
+        "404 screen shows the three text elements with the exact strings provided.",
+        "The “404” has an obvious glitch/flicker effect including noticeable color channel shifts.",
+        "Typography is legible on mobile and maintains centered layout."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
+          "operation": "create",
+          "description": "Create the 404 prank scene view with the exact strings: huge centered “404” + headline “Love Not Found 💔” + subtitle “Error: Valentine Missing... or maybe she's just too shy? 😏 Try clicking around or wait a sec...”, and structure content for centered mobile layout."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global CSS keyframes/utilities for the glitch effect (flicker + RGB/pink/red/blue channel shifts) used by the “404” element, ensuring it remains legible and centered on mobile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add a cracked/broken heart animation on the 404 scene that progressively cracks over time.",
+      "acceptanceCriteria": [
+        "A heart graphic appears on the 404 screen.",
+        "The heart shows a progressive crack growth effect over time without user interaction.",
+        "Animation loops or reaches a final cracked state without causing layout shifts."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/CrackingHeart.tsx",
+          "operation": "create",
+          "description": "Implement an SVG/CSS-based heart graphic with a progressive crack reveal over time (time-driven, no user input) designed to be layout-stable (no reflow)."
+        },
+        {
+          "path": "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
+          "operation": "modify",
+          "description": "Wire the CrackingHeart component into the 404 scene and ensure it animates progressively without shifting surrounding text."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add/extend keyframes for progressive crack growth (e.g., stroke-dashoffset / mask reveal) and ensure it loops or ends cleanly without layout shifts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add a dark romantic gradient background to the 404 scene with subtle floating heart particles.",
+      "acceptanceCriteria": [
+        "Background is a dark gradient (black to deep pink/purple).",
+        "Heart particles are visible but subtle and do not obstruct text readability.",
+        "Particle animation performs smoothly on mobile (no severe jank)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/HeartParticles.tsx",
+          "operation": "create",
+          "description": "Create a lightweight particle layer (DOM/CSS-based) that renders faint floating heart particles with subtle motion; keep particle count and animation cost mobile-friendly."
+        },
+        {
+          "path": "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
+          "operation": "modify",
+          "description": "Apply the black-to-deep pink/purple gradient background to the prank scene and mount the HeartParticles layer behind text to preserve readability."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add keyframes/styles for subtle floating heart particles and the dark romantic gradient background utilities."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add a dramatic glitch-fix transition from 404 to proposal after 10–15s idle or immediately on click/tap/mousemove, with flash/glitch overlay, shake, and fade-out before proposal appears.",
+      "acceptanceCriteria": [
+        "If the user does nothing, transition happens automatically within 10–15 seconds.",
+        "If the user clicks/taps anywhere (or moves the mouse on desktop), transition happens immediately.",
+        "Transition includes: flash/glitch overlay + 404 element shake + fade-out before proposal appears."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/GlitchFixTransition.tsx",
+          "operation": "create",
+          "description": "Create a reusable transition overlay component that can render a flash/glitch layer and coordinate timing for shake + fade sequences."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Implement timers and global interaction listeners (click/tap anywhere + mousemove on desktop) to trigger a one-time glitch-fix transition from prank scene to proposal within 10–15 seconds, and immediately on interaction."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add keyframes for transition flash/glitch overlay and shake/fade effects for prank scene elements used during the glitch-fix transition."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement the proposal scene with the exact heading and large YES/NO buttons styled as specified.",
+      "acceptanceCriteria": [
+        "Heading matches the exact provided string.",
+        "YES button is green with white text and includes a heart emoji in the label.",
+        "NO button is red with white text, both buttons are large and easy to tap on mobile."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/scenes/ProposalScene.tsx",
+          "operation": "create",
+          "description": "Create the proposal scene with heading exactly “Wait... FOUND IT! ❤️ Will you be my Valentine, My Love?” and two large tappable buttons: YES (green/white + heart emoji in label) and NO (red/white). Use the shadcn-ui Button component for consistent accessible button behavior. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire ProposalScene into the scene state flow and connect YES/NO actions to victory state and NO evasive behavior handler."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement the YES flow victory screen with immediate confetti burst, continuing heart rain, and a PG-13 default message sourced from a single editable constant placeholder.",
+      "acceptanceCriteria": [
+        "Clicking YES switches to a distinct victory screen (proposal UI is no longer visible).",
+        "A confetti burst effect happens immediately on entering the victory screen and heart-rain continues afterward.",
+        "Victory screen message text is sourced from a single clearly identified constant/variable (easy to edit).",
+        "The shipped default message avoids explicit sexual content while keeping a romantic playful tone."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/scenes/VictoryScene.tsx",
+          "operation": "create",
+          "description": "Create the victory scene that fully replaces prior UI, triggers an immediate confetti burst on mount, and shows ongoing heart rain plus a romantic message sourced from a single exported constant (PG-13 default; stronger wording only as an editable placeholder)."
+        },
+        {
+          "path": "frontend/src/components/valentine/ConfettiBurst.tsx",
+          "operation": "create",
+          "description": "Implement a confetti burst visual (canvas or DOM-based) designed to fire once on victory entry and then stop/settle to preserve performance on mobile."
+        },
+        {
+          "path": "frontend/src/components/valentine/HeartRain.tsx",
+          "operation": "create",
+          "description": "Implement a continuing heart-rain animation layer optimized for mobile (limited elements, CSS transforms) for the victory scene background."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "On YES click, switch scene state to Victory and ensure proposal UI is unmounted/hidden; ensure victory effects initialize only once per entry."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Make the NO button evasive on desktop and mobile with escalating behavior by interaction count; handle rare click with denial message and reset.",
+      "acceptanceCriteria": [
+        "On desktop, hovering the NO button moves it smoothly to a new random position within viewport bounds.",
+        "On mobile, initiating a tap/touch on NO triggers the same evasive move behavior.",
+        "The 1st/2nd/3rd+ interaction states change size/speed/animation and button label exactly as specified.",
+        "If NO is clicked, the denial message appears exactly and the NO button resets back to initial behavior/text afterward."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/EvasiveNoButton.tsx",
+          "operation": "create",
+          "description": "Create an evasive NO button component that repositions smoothly within viewport bounds on hover (desktop) and touchstart/pointerdown (mobile), escalates behavior by interaction count (1st shrink + “Please don't... 😭”; 2nd faster + “I'm scared!”; 3rd+ shakes/glitches + “YES PLEASE!”), and on click shows “Rejection Denied! 💔 Try again~” then resets."
+        },
+        {
+          "path": "frontend/src/components/valentine/scenes/ProposalScene.tsx",
+          "operation": "modify",
+          "description": "Replace the basic NO button with EvasiveNoButton and ensure it remains fully visible (bounded) and easy to understand on both mobile and desktop."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add CSS for NO button shake/glitch escalation animations and smooth movement transitions while preserving tap targets on mobile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Apply consistent romantic styling across all scenes and load Google Fonts (Dancing Script for headings, Poppins for body).",
+      "acceptanceCriteria": [
+        "Dancing Script is applied to headings; Poppins is applied to body text.",
+        "Color palette uses pink/red/white/gold accents consistently across scenes.",
+        "All major UI elements remain readable and visually coherent on mobile."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add Google Fonts imports for Dancing Script and Poppins in the document head and ensure they are available to the React app."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Set global font families (Poppins for body; Dancing Script for headings via utility/class), and establish a consistent romantic palette (pink/red/white/gold accents) used across all scenes."
+        },
+        {
+          "path": "frontend/src/components/valentine/SceneShell.tsx",
+          "operation": "modify",
+          "description": "Enforce consistent typography scale, spacing, and accent styles across scenes (headings in Dancing Script, readable body text), ensuring mobile-first layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add a small persistent music toggle that can play/pause looping background music, with a clear placeholder if no audio is bundled.",
+      "acceptanceCriteria": [
+        "A visible toggle control exists on all scenes (or persists across scene changes).",
+        "Toggling changes between play and pause states without errors.",
+        "If no audio asset is included, code includes a clear comment indicating where to add the audio URL/path."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/MusicToggle.tsx",
+          "operation": "modify",
+          "description": "Implement play/pause behavior using an HTMLAudioElement with loop enabled; include a clearly commented placeholder indicating where to add a free loop URL or local file path; design as a small unobtrusive control."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Render MusicToggle as a persistent overlay so it remains available across prank/proposal/victory scenes without remount issues."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Add an optional, non-copyrighted 'cute hugging characters' image block on the victory screen; hide it cleanly if absent.",
+      "acceptanceCriteria": [
+        "Victory screen supports showing an optional image block.",
+        "No copyrighted character imagery is included in generated assets by default.",
+        "If the optional image is absent, layout still looks complete and intentional."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/scenes/VictoryScene.tsx",
+          "operation": "modify",
+          "description": "Add an optional image area on the victory scene that can render an original illustration asset when present; keep the section hidden/collapsed when the image is not available so layout remains intentional."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Ensure the frontend is build/deploy ready for Internet Computer sharing and includes minimal, clear instructions to deploy and obtain a shareable URL; app must function without backend data.",
+      "acceptanceCriteria": [
+        "Project builds without errors in the standard template workflow.",
+        "There are clear instructions (in a dedicated doc file or prominent comment) describing how to deploy and obtain a shareable URL.",
+        "Frontend does not depend on any external backend data to function (site works as a static interactive experience)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/DEPLOYMENT.md",
+          "operation": "create",
+          "description": "Add concise run/deploy instructions using the provided template tooling (local dev + deploy) and explain how to obtain the canister's publicly shareable URL; note that the site is a static interactive experience with no backend data dependency."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Ensure the app does not call backend capabilities and runs purely client-side (no dependency on external backend data) while still using the template’s app composition."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Choose and enforce a cohesive creative theme direction (romantic/cute, not generic) across all scenes, including animation feel and styling details.",
+      "acceptanceCriteria": [
+        "Visual style is consistent across all scenes (same design language for spacing, typography, and effects).",
+        "Theme feels intentionally “cute romantic” and not like unstyled template UI.",
+        "Theme does not default to a blue/purple tech aesthetic; it remains aligned to romantic pink/red/gold."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define a coherent 'cute romantic noir' theme layer (dark romantic gradients, warm gold highlights, soft glow accents, consistent animation easing) and reusable utilities used across prank/proposal/victory scenes."
+        },
+        {
+          "path": "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
+          "operation": "modify",
+          "description": "Apply the selected theme consistently to the 404 scene (spacing, glow accents, motion feel) while maintaining readability and subtlety of background effects."
+        },
+        {
+          "path": "frontend/src/components/valentine/scenes/ProposalScene.tsx",
+          "operation": "modify",
+          "description": "Apply the same theme language to the proposal scene (button style, typography, accents, motion/easing) to avoid a generic template look. Use shadcn-ui Button composition for consistency. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/valentine/scenes/VictoryScene.tsx",
+          "operation": "modify",
+          "description": "Apply consistent theme styling to victory scene (celebration layers, message card styling, optional image block) ensuring it visually matches the earlier scenes."
+        },
+        {
+          "path": "frontend/public/assets/generated/hugging-couple-illustration.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated original illustration asset for the optional victory image block at this exact path and wire it for display when enabled."
+        }
+      ]
+    }
+  ]
+}
