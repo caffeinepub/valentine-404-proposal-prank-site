@@ -1,8 +1,8 @@
 {
-  "frontend/src/App.tsx": "Main application component managing scene state transitions (prank → transition → proposal → victory) with auto-timer and interaction listeners for the glitch-fix transition.",
+  "frontend/src/App.tsx": "Main application component that validates URL token access via useSecretTokenGate hook and conditionally renders InvalidLinkScreen (when blocked), loading state (when checking), or the scene flow (prank → transition → proposal → victory) after successful token authorization.",
   "frontend/src/components/valentine/scenes/Prank404Scene.tsx": "Fake 404 error screen with glitching \"404\" text, \"Love Not Found\" headline, cracking heart animation, and floating heart particles on a dark romantic gradient background.",
   "frontend/src/components/valentine/scenes/ProposalScene.tsx": "Proposal screen displaying the romantic question with large YES and evasive NO buttons on a romantic gradient background with subtle heart pattern.",
-  "frontend/src/components/valentine/scenes/VictoryScene.tsx": "Victory celebration screen with confetti burst, heart rain, customizable romantic message, and optional couple illustration image.",
+  "frontend/src/components/valentine/scenes/VictoryScene.tsx": "Victory celebration screen with confetti burst, heart rain, user-provided romantic message displayed verbatim, and optional couple illustration image.",
   "frontend/src/components/valentine/EvasiveNoButton.tsx": "Interactive NO button that moves to random positions on hover/touch with escalating behavior (shrinking, faster movement, shaking) and shows denial message if clicked.",
   "frontend/src/components/valentine/CrackingHeart.tsx": "SVG heart component with progressive crack animation that grows over time using stroke-dashoffset technique.",
   "frontend/src/components/valentine/HeartParticles.tsx": "Subtle floating heart emoji particles that animate upward across the screen for the 404 prank scene background.",
@@ -13,5 +13,9 @@
   "frontend/src/index.css": "Global styles with romantic OKLCH color palette, Google Fonts imports (Dancing Script, Poppins), and comprehensive animation keyframes for glitch, float, shake, and fade effects.",
   "frontend/index.html": "HTML entry point with updated title and meta description for the Valentine's Day surprise website.",
   "frontend/tailwind.config.js": "Tailwind configuration extended with romantic color tokens, custom font families (Dancing Script for headings, Poppins for body), and design system utilities.",
-  "frontend/DEPLOYMENT.md": "Complete deployment guide with local development instructions, IC deployment steps, shareable URL information, and customization tips for music, messages, and styling."
+  "frontend/DEPLOYMENT.md": "Complete deployment guide with link-only access documentation explaining how to set/change the backend secret token, create shareable URLs with token query parameters, security limitations, and troubleshooting steps.",
+  "frontend/src/hooks/usePasscodeGate.ts": "Custom React hook that manages passcode verification state, calls the backend authenticatePasscode method via useActor, and persists unlock status in sessionStorage.",
+  "frontend/src/components/valentine/AccessGateScreen.tsx": "Full-screen passcode entry component with romantic styling, form validation, error display, and loading states that blocks access until successful verification.",
+  "frontend/src/hooks/useSecretTokenGate.ts": "Custom React hook that extracts the secret token from URL query parameters, validates it against the backend via authenticateSecretToken, and manages authorization state (checking/authorized/blocked) with sessionStorage persistence.",
+  "frontend/src/components/valentine/InvalidLinkScreen.tsx": "Full-screen blocked-access component with romantic styling that displays when the URL token is missing or invalid, showing English text to indicate the link is incomplete without exposing the token value."
 }

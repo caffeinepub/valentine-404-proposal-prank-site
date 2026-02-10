@@ -90,9 +90,27 @@ export class ExternalBlob {
     }
 }
 export interface backendInterface {
+    authenticateSecretToken(attempt: string | null): Promise<void>;
 }
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
+    async authenticateSecretToken(arg0: string | null): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.authenticateSecretToken(to_candid_opt_n1(this._uploadFile, this._downloadFile, arg0));
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.authenticateSecretToken(to_candid_opt_n1(this._uploadFile, this._downloadFile, arg0));
+            return result;
+        }
+    }
+}
+function to_candid_opt_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: string | null): [] | [string] {
+    return value === null ? candid_none() : candid_some(value);
 }
 export interface CreateActorOptions {
     agent?: Agent;

@@ -1,18 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Build a single-page, mobile-first Valentine’s Day proposal prank experience that starts as a glitchy 404, transitions into a proposal prompt, and ends with a celebratory YES victory screen.
+**Goal:** Replace the broken passcode gate with link-only access using a secret URL token validated by the backend, and remove all password UI.
 
 **Planned changes:**
-- Implement one-page, client-side scene/state switching for three scenes (404 prank → proposal → victory) with smooth transitions and no routing/URL changes.
-- Create the fake 404 prank scene with exact required texts, a prominent glitch-animated “404”, progressive cracked-heart animation, dark romantic gradient background, and subtle floating heart particles.
-- Add a “glitch-fix” transition that triggers automatically after ~10–15 seconds or immediately on any click/tap/mousemove, including flash/glitch overlay, shake, and fade-out before revealing the proposal.
-- Build the proposal scene with the exact heading text and two large mobile-friendly buttons: YES (green, white text, includes heart emoji) and NO (red, white text).
-- Implement NO evasive behavior for desktop + mobile with escalating interaction states and exact label changes; if clicked, show the exact denial message and reset NO state.
-- Implement YES flow to replace the page with a victory scene featuring a confetti burst, ongoing raining hearts, and a romantic message sourced from a single editable constant (shipping a non-explicit default).
-- Apply consistent romantic/cute styling across all scenes using Google Fonts (Dancing Script for headings, Poppins for body) and pink/red/white/gold accents, with a coherent theme direction.
-- Add a small persistent music toggle for looping background music with a clearly commented placeholder for the audio URL/path if none is bundled.
-- Add an optional victory-screen image area for an original “cute hugging characters” illustration (or hide it when not provided).
-- Ensure the project builds cleanly and include minimal in-project instructions for deploying to the Internet Computer to obtain a shareable canister URL.
+- Remove the passcode/password access flow from the frontend so the app never shows a passcode entry screen and no longer uses `AccessGateScreen` / `usePasscodeGate`.
+- Remove or stop using the backend `authenticatePasscode` API associated with passcode entry.
+- Add link-only access: require a secret token in the URL (e.g., query parameter) and validate it via the backend before rendering any prank/proposal/victory scenes.
+- Add a minimal blocked-access UI state that appears when the token is missing/invalid, with clear English text and no token disclosure.
+- Update `frontend/DEPLOYMENT.md` to document link-token setup/change in the backend, how to form the shareable URL with token, and the limitation that anyone with the link can access.
 
-**User-visible outcome:** A shareable, mobile-friendly prank proposal site that starts with a glitchy 404 “Love Not Found 💔”, reveals a “Will you be my Valentine” prompt with a comedic evasive NO button, and celebrates a YES with confetti, raining hearts, optional cute illustration, and toggleable background music.
+**User-visible outcome:** Visitors can only access the Valentine scene flow by opening the correct tokenized link; otherwise they see an “invalid link” blocking screen, with no passcode prompt anywhere.

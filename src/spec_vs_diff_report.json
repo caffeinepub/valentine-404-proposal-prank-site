@@ -1,69 +1,53 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-09T23:44:28.329Z",
-  "summary": "Most core frontend scenes and animations are implemented (404 prank with glitch text/particles/cracking heart, proposal with YES/NO, victory with confetti + heart rain, scene switching, fonts, deployment docs). Some acceptance-criteria details appear incomplete: the required shake/fade-out of the original 404 elements during the transition is not evidenced, the NO button’s 3rd+ state lacks a clear “glitch” effect (only shake is shown), the music toggle does not actually play/pause unless a src is set (and currently never toggles state), and the optional victory image block may leave an empty framed container when the image is missing.",
+  "generatedAt": "2026-02-10T00:22:29.616Z",
+  "summary": "Diff replaces the passcode gate with a URL token gate validated by a new backend `authenticateSecretToken` method, adds an `InvalidLinkScreen` blocked UI, and updates App rendering to block scenes until authorized. Deployment docs were updated, but the diff truncation prevents confirming all required documentation details.",
   "missing_requirements": [
     {
-      "id": "REQ-5",
-      "requirement": "Transition includes flash/glitch overlay + the 404 elements shake and fade out before proposal appears.",
-      "reason": "App switches from the prank scene to a separate `GlitchFixTransition` scene; the original `Prank404Scene` content is unmounted rather than shown shaking/fading out. The transition component renders its own 404 and text (“Fixing error...”), but there’s no evidence the actual prank-screen elements are animated out.",
+      "id": "REQ-24",
+      "requirement": "Documentation includes an example of a shareable URL format that includes the token (example text in English) and includes a limitation note that link-only access is not share-proof (anyone with the link can access).",
+      "reason": "The `frontend/DEPLOYMENT.md` content is truncated right after the \"Format:\" section, so the diff summary does not provide evidence that an example URL format and the explicit limitation note are actually present in the final file.",
       "evidence": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/valentine/GlitchFixTransition.tsx",
-        "frontend/src/components/valentine/scenes/Prank404Scene.tsx"
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "requirement": "3rd+ NO interaction state shakes/glitches (not just shakes) and escalations match the specified behavior.",
-      "reason": "`EvasiveNoButton` applies `animate-shake` at `hoverCount >= 3` but there is no evidence of any glitch/VFX treatment for the NO button in the 3rd+ state beyond shaking.",
-      "evidence": [
-        "frontend/src/components/valentine/EvasiveNoButton.tsx"
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "requirement": "Music toggle can play/pause looping background music; if no audio is bundled, include placeholder but toggling should still change between play/pause states without errors.",
-      "reason": "`MusicToggle` initializes `new Audio('')` and `toggleMusic` early-returns when `audioRef.current.src` is falsy, so the UI never actually transitions between playing/paused states unless a source is manually added; state (`isPlaying`) is not updated on that early return.",
-      "evidence": [
-        "frontend/src/components/valentine/MusicToggle.tsx"
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "requirement": "Victory screen image area is optional/hidden when no image is provided; layout should still look intentional when absent.",
-      "reason": "The image element hides itself on error (`display: none`), but its surrounding bordered container remains rendered, which may leave an empty framed block rather than fully hiding the image area when the asset is missing.",
-      "evidence": [
-        "frontend/src/components/valentine/scenes/VictoryScene.tsx"
+        "frontend/DEPLOYMENT.md (truncated after: \"### Creating the Shareable Link\" → \"**Format:**\")"
       ]
     }
   ],
-  "hallucinated_features": [],
-  "confidence": 0.74,
+  "hallucinated_features": [
+    {
+      "description": "Added a Motoko migration module to map `serverPasscode` to `internalSecret`.",
+      "reason": "BuildRequest asks to replace passcode gate with link-only token access, but does not request any data migration mechanism or stable-structure migration support.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo (uses `with migration = Migration.run`)"
+      ]
+    },
+    {
+      "description": "Session persistence of authorization state via `sessionStorage` key `valentine_token_authorized` to bypass re-checking token after first validation.",
+      "reason": "BuildRequest does not specify persisting authorization state across reloads within a session; it only requires validating the URL token before rendering scenes.",
+      "evidence": [
+        "frontend/src/hooks/useSecretTokenGate.ts (uses `sessionStorage.getItem`/`setItem` with `AUTH_KEY`)"
+      ]
+    },
+    {
+      "description": "Added a dedicated loading screen UI state with animated spinner/emoji while token validation is in progress.",
+      "reason": "BuildRequest requires an invalid-link blocked state, but does not request a loading/\"checking\" screen design.",
+      "evidence": [
+        "frontend/src/App.tsx (renders a full-screen \"Loading...\" UI when `authStatus === 'checking'`)"
+      ]
+    }
+  ],
+  "confidence": 0.66,
   "changed_files": [
-    "all_files_summary.json",
     "backend/main.mo",
+    "backend/migration.mo",
     "frontend-file-summaries.txt",
     "frontend/DEPLOYMENT.md",
-    "frontend/index.css",
-    "frontend/index.html",
     "frontend/src/App.tsx",
-    "frontend/src/components/valentine/ConfettiBurst.tsx",
-    "frontend/src/components/valentine/CrackingHeart.tsx",
-    "frontend/src/components/valentine/EvasiveNoButton.tsx",
-    "frontend/src/components/valentine/GlitchFixTransition.tsx",
-    "frontend/src/components/valentine/HeartParticles.tsx",
-    "frontend/src/components/valentine/HeartRain.tsx",
-    "frontend/src/components/valentine/MusicToggle.tsx",
-    "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
-    "frontend/src/components/valentine/scenes/ProposalScene.tsx",
-    "frontend/src/components/valentine/scenes/VictoryScene.tsx",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useInternetIdentity.ts",
-    "frontend/src/index.css",
-    "frontend/src/main.tsx",
-    "frontend/tailwind.config.js",
+    "frontend/src/components/valentine/AccessGateScreen.tsx",
+    "frontend/src/components/valentine/InvalidLinkScreen.tsx",
+    "frontend/src/hooks/usePasscodeGate.ts",
+    "frontend/src/hooks/useSecretTokenGate.ts",
     "project_state.json"
   ]
 }

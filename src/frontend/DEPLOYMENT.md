@@ -1,6 +1,6 @@
 # Valentine's Day Proposal Prank - Deployment Guide
 
-This is a romantic, interactive Valentine's Day proposal website that runs entirely client-side (no backend required).
+This is a romantic, interactive Valentine's Day proposal website with link-only access control.
 
 ## Local Development
 
@@ -56,7 +56,37 @@ This is a romantic, interactive Valentine's Day proposal website that runs entir
    https://<CANISTER_ID>.raw.ic0.app
    ```
 
-## Customization Tips
+## Link-Only Access Configuration
 
-### Add Background Music
-Edit `frontend/src/components/valentine/MusicToggle.tsx` and replace the empty audio source with your music file:
+### How Link-Only Access Works
+
+This app uses a secret token in the URL to control access. Only users with the complete link (including the token) can view the romantic surprise. The token is validated by the backend canister, so it's not exposed in the frontend code.
+
+### Setting/Changing the Secret Token
+
+1. **Edit the backend secret token:**
+   Open `backend/main.mo` and locate this line:
+   ```motoko
+   let internalSecret = "my_secret_value";
+   ```
+
+2. **Change it to your desired secret token:**
+   ```motoko
+   let internalSecret = "YourUniqueSecretToken123";
+   ```
+   
+   💡 **Tip:** Use a long, random string that's hard to guess. You can generate one using:
+   ```bash
+   openssl rand -base64 32
+   ```
+
+3. **Redeploy the backend:**
+   ```bash
+   dfx deploy backend
+   ```
+
+### Creating the Shareable Link
+
+After setting your secret token and deploying, create the shareable link by adding the token as a query parameter:
+
+**Format:**

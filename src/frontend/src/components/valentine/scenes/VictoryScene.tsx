@@ -3,7 +3,7 @@ import ConfettiBurst from '../ConfettiBurst';
 import HeartRain from '../HeartRain';
 
 // Editable message constant - customize this text as desired
-export const VICTORY_MESSAGE = `I knew you'd say YES, my love! ❤️ You're absolutely amazing, and I can't wait to spend this Valentine's Day with you. Every moment with you is special, and saying yes just made this the best day ever. You make my heart race and my world brighter. Thank you for being mine. Forever yours, partner in crime 🔥`;
+export const VICTORY_MESSAGE = `I knew you'd say YES, my love! ❤️ I love you. Not the cute filtered version — the real, messy, can't breathe without you, ruin the sheets version. You said yes (obviously, who could resist this face?😌😏), so now you're stuck with my hands everywhere, my mouth marking you up, and zero escape from the chaos you love pretending to hate. Thanks for finally admitting that you are mine. Can't wait to make you blush... then beg. 😈❤️. Forever yours, partner in crime 🔥`;
 
 export default function VictoryScene() {
   useEffect(() => {

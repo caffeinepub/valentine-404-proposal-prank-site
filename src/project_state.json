@@ -1,15 +1,18 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
-  "summary": "Single-page mobile-responsive Valentine’s Day proposal prank website: starts as a fake glitchy 404 scene with animated effects, then transitions to a proposal screen with playful YES/NO interactions and a celebratory victory screen; includes optional background music toggle and deployment to a shareable live URL.",
+  "projectStateVersion": 11,
+  "summary": "Single-page mobile-responsive Valentine’s Day proposal prank website with fake glitchy 404 scene transitioning to proposal and victory screens; includes optional background music toggle, deployment to a shareable live URL, and a requirement to restrict access using link-only access (no password/passcode gate).",
   "architectural_notes": [
     "Single-page interactive experience with state transitions: 404 prank scene -> proposal scene -> victory screen.",
     "Mobile-first responsive layout; touch interactions required for NO button behavior.",
-    "Use CSS/JS animations for glitch effects, confetti/hearts particles, and timed/interaction-based transitions."
+    "Use CSS/JS animations for glitch effects, confetti/hearts particles, and timed/interaction-based transitions.",
+    "Replace passcode access gate with link-only access using a secret token in the URL (no password prompt); only render scenes when a valid token is present."
   ],
-  "known_issues": [],
-  "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Original cute romantic illustration of two anthropomorphic woodland characters (a bunny and a fox) hugging, pastel pink/red palette (hugging-couple-illustration.dim_1200x800.png)",
+  "known_issues": [
+    "Potential policy/content compliance conflict: user requests adding explicitly sexual/explicit custom message verbatim to the victory screen, which may contradict prior plan to ship a PG-13 default with a placeholder.",
+    "Passcode/password access gate is not working for the user; remove passcode gate and switch to link-only access."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-a-single-page-fully-mobile-responsive-valentine-s-day-prank-website-with-three-client-side-scenes-404-prank-screen-proposal-screen-victory-screen-and-smooth-transitions-between-them-no-navigation-routing-required",
@@ -114,6 +117,78 @@
         "REQ-13"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-victoryscene-message-text-with-the-user-provided-message-verbatim-and-render-it-on-the-victory-screen-without-any-rewriting-censoring-or-additional-assistant-authored-romantic-text",
+      "title": "Replace the current VictoryScene message text with the user-provided message verbatim, and render it on the victory screen without any rewriting, censoring, or additional assistant-authored romantic text.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-private-access-gate-so-the-valentine-prank-app-cannot-be-viewed-by-the-public-the-site-must-require-a-secret-passcode-shared-out-of-band-by-the-sender-before-any-of-the-prank-proposal-victory-scenes-render",
+      "title": "Add a private access gate so the Valentine prank app cannot be viewed by the public: the site must require a secret passcode (shared out-of-band by the sender) before any of the prank/proposal/victory scenes render.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-frontend-access-screen-blocking-overlay-page-that-prompts-for-the-passcode-and-only-mounts-renders-the-existing-app-scenes-prank404scene-proposalscene-victoryscene-after-the-backend-confirms-access",
+      "title": "Add a frontend access screen (blocking overlay/page) that prompts for the passcode and only mounts/renders the existing App scenes (Prank404Scene/ProposalScene/VictoryScene) after the backend confirms access.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-deployment-documentation-to-explain-how-to-set-change-the-private-passcode-and-the-limitations-anyone-who-learns-the-passcode-can-access-this-is-not-share-proof",
+      "title": "Update deployment documentation to explain how to set/change the private passcode and the limitations (anyone who learns the passcode can access; this is not share-proof).",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-deployment-documentation-passcode-example-to-reflect-the-new-configured-passcode-value-thanks-love-while-keeping-the-rest-of-the-instructions-and-security-notes-in-english",
+      "title": "Update the deployment documentation passcode example to reflect the new configured passcode value \"Thanks, love\" (while keeping the rest of the instructions and security notes in English).",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-passcode-password-access-flow-so-the-valentine-app-no-longer-prompts-for-a-passcode-and-no-longer-calls-the-backend-authenticatepasscode-method-to-unlock-the-site",
+      "title": "Remove the passcode/password access flow so the Valentine app no longer prompts for a passcode and no longer calls the backend `authenticatePasscode` method to unlock the site.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-link-only-access-by-requiring-a-secret-token-embedded-in-the-url-e-g-a-query-parameter-and-validate-that-token-via-the-backend-before-rendering-any-prank-proposal-victory-scenes",
+      "title": "Implement link-only access by requiring a secret token embedded in the URL (e.g., a query parameter) and validate that token via the backend before rendering any prank/proposal/victory scenes.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-clear-minimal-invalid-link-blocked-access-ui-state-for-cases-where-the-url-token-is-missing-incorrect-using-english-user-facing-text",
+      "title": "Add a clear, minimal “invalid link” blocked-access UI state for cases where the URL token is missing/incorrect, using English user-facing text.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-deployment-md-to-remove-passcode-setup-instructions-and-replace-them-with-link-only-access-instructions-how-to-set-change-the-backend-secret-token-and-how-to-form-the-correct-shareable-url-containing-the-token-including-clear-limitations-anyone-with-the-link-can-access",
+      "title": "Update `frontend/DEPLOYMENT.md` to remove passcode setup instructions and replace them with link-only access instructions: how to set/change the backend secret token and how to form the correct shareable URL containing the token, including clear limitations (anyone with the link can access).",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -156,6 +231,24 @@
     {
       "id": "AR-7",
       "summary": "Deploy as a live, shareable website URL",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Replace the victory-screen message placeholder/PG-13 default with the user-provided custom message text verbatim (place exactly what the user provided on the victory screen)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Restrict site access so only the intended recipient (person with the link or an additional secret) can view it, rather than being publicly accessible to everyone",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Replace the passcode-based access gate with link-only access (e.g., a secret token embedded in the URL) so the app is accessible only via the correct link and no password prompt is shown",
       "reqIds": [],
       "status": "pending"
     }

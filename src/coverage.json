@@ -1,309 +1,86 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-09T23:44:28.332Z",
+  "generatedAt": "2026-02-10T00:22:29.619Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 13,
-    "implemented": 13,
+    "total": 4,
+    "implemented": 4,
     "items": [
       {
-        "id": "REQ-1",
-        "summary": "Create a single-page, fully mobile-responsive Valentine’s Day prank website with three client-side scenes (404 prank screen → proposal screen → victory screen) and smooth transitions between them (no navigation/routing required).",
+        "id": "REQ-21",
+        "summary": "Remove the passcode/password access flow so the Valentine app no longer prompts for a passcode and no longer calls the backend `authenticatePasscode` method to unlock the site.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/App.tsx",
-          "frontend/src/components/valentine/SceneShell.tsx",
-          "frontend/src/components/valentine/MusicToggle.tsx"
+          "frontend/src/hooks/usePasscodeGate.ts",
+          "frontend/src/components/valentine/AccessGateScreen.tsx"
         ],
         "matchedFiles": [
           "frontend/src/App.tsx",
-          "frontend/src/components/valentine/MusicToggle.tsx"
+          "frontend/src/hooks/usePasscodeGate.ts",
+          "frontend/src/components/valentine/AccessGateScreen.tsx"
         ]
       },
       {
-        "id": "REQ-10",
-        "summary": "Add a small, unobtrusive music toggle control that can play/pause subtle looping romantic background music. If no audio URL is bundled, include a clearly commented placeholder showing where to add a free loop URL or local file reference.",
+        "id": "REQ-22",
+        "summary": "Implement link-only access by requiring a secret token embedded in the URL (e.g., a query parameter) and validate that token via the backend before rendering any prank/proposal/victory scenes.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/valentine/MusicToggle.tsx",
+          "frontend/src/hooks/useSecretTokenGate.ts",
           "frontend/src/App.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/valentine/MusicToggle.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-11",
-        "summary": "Add an optional “cute hugging characters” image area on the victory screen, but do not use copyrighted characters (e.g., Zootopia). Instead, render an original, cute, romance-themed illustration asset (or leave the section hidden unless an image is provided).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/valentine/scenes/VictoryScene.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/valentine/scenes/VictoryScene.tsx"
-        ]
-      },
-      {
-        "id": "REQ-12",
-        "summary": "Provide project deployment readiness for a shareable URL on the Internet Computer by ensuring the app builds and runs cleanly with the provided template tooling; include minimal, clear deploy/run instructions in-project (e.g., in a visible documentation section or comments) that result in a publicly shareable canister URL after deployment.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/DEPLOYMENT.md",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/DEPLOYMENT.md",
+          "frontend/src/hooks/useSecretTokenGate.ts",
           "frontend/src/App.tsx"
         ]
       },
       {
-        "id": "REQ-13",
-        "summary": "Choose and apply one coherent, creative visual theme direction for the app (beyond the specified romantic palette), including background styling details, button/typography styling, and animation “feel,” and enforce it consistently across the 404, proposal, and victory scenes (avoid a generic default look).",
+        "id": "REQ-23",
+        "summary": "Add a clear, minimal “invalid link” blocked-access UI state for cases where the URL token is missing/incorrect, using English user-facing text.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
-          "frontend/src/components/valentine/scenes/ProposalScene.tsx",
-          "frontend/src/components/valentine/scenes/VictoryScene.tsx",
-          "frontend/public/assets/generated/hugging-couple-illustration.dim_1200x800.png"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
-          "frontend/src/components/valentine/scenes/ProposalScene.tsx",
-          "frontend/src/components/valentine/scenes/VictoryScene.tsx",
-          "frontend/public/assets/generated/hugging-couple-illustration.dim_1200x800.png"
-        ]
-      },
-      {
-        "id": "REQ-2",
-        "summary": "Implement the initial fake 404 prank screen with: (1) huge centered “404” text using a glitch animation (flicker + RGB/pink/red/blue shifts), (2) headline text exactly: “Love Not Found 💔”, (3) subtitle text exactly: “Error: Valentine Missing... or maybe she's just too shy? 😏 Try clicking around or wait a sec...”.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
-          "frontend/src/index.css"
-        ]
-      },
-      {
-        "id": "REQ-3",
-        "summary": "Add a cracked/broken heart animation on the 404 screen that visually appears to crack more over time (progressive cracking effect).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/valentine/CrackingHeart.tsx",
-          "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/valentine/CrackingHeart.tsx",
-          "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
-          "frontend/src/index.css"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Add a dark romantic background for the 404 screen: black-to-deep pink/purple gradient with faint floating heart particles moving subtly.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/valentine/HeartParticles.tsx",
-          "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/valentine/HeartParticles.tsx",
-          "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
-          "frontend/src/index.css"
-        ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Trigger a dramatic “glitch-fix” transition from the 404 prank screen to the proposal screen after ~10–15 seconds OR immediately on any click/tap or mousemove: screen flashes/glitches, 404 elements shake and fade out, then proposal content appears.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/valentine/GlitchFixTransition.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/valentine/GlitchFixTransition.tsx",
-          "frontend/src/App.tsx",
-          "frontend/src/index.css"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Implement the proposal screen with the heading text exactly: “Wait... FOUND IT! ❤️ Will you be my Valentine, My Love?” and two large buttons labeled YES and NO styled as requested (YES green with white text and heart emoji; NO red with white text).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/valentine/scenes/ProposalScene.tsx",
+          "frontend/src/components/valentine/InvalidLinkScreen.tsx",
           "frontend/src/App.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/valentine/scenes/ProposalScene.tsx",
+          "frontend/src/components/valentine/InvalidLinkScreen.tsx",
           "frontend/src/App.tsx"
         ]
       },
       {
-        "id": "REQ-7",
-        "summary": "Implement the YES flow: on YES click, replace the whole page with a victory screen that includes a massive confetti burst plus raining hearts animation, and displays a romantic message. Because the user-provided message contains explicit sexual content, implement a clearly marked constant/string placeholder for the final message text and ship a non-explicit (PG-13) default message instead.",
+        "id": "REQ-24",
+        "summary": "Update `frontend/DEPLOYMENT.md` to remove passcode setup instructions and replace them with link-only access instructions: how to set/change the backend secret token and how to form the correct shareable URL containing the token, including clear limitations (anyone with the link can access).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/valentine/scenes/VictoryScene.tsx",
-          "frontend/src/components/valentine/ConfettiBurst.tsx",
-          "frontend/src/components/valentine/HeartRain.tsx",
-          "frontend/src/App.tsx"
+          "frontend/DEPLOYMENT.md"
         ],
         "matchedFiles": [
-          "frontend/src/components/valentine/scenes/VictoryScene.tsx",
-          "frontend/src/components/valentine/ConfettiBurst.tsx",
-          "frontend/src/components/valentine/HeartRain.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Implement the NO button evasive behavior to be funny and difficult to click on both desktop and mobile: on hover (desktop) or touch start (mobile), the button smoothly jumps to a random on-screen position while staying fully visible within viewport bounds. Escalate behavior by hover/touch count: 1st → shrink + change text to “Please don't... 😭”; 2nd → moves faster + text “I'm scared!”; 3rd+ → shakes/glitches + text becomes “YES PLEASE!”. If NO is somehow clicked, show “Rejection Denied! 💔 Try again~” and reset the NO button state.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/valentine/EvasiveNoButton.tsx",
-          "frontend/src/components/valentine/scenes/ProposalScene.tsx",
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/valentine/EvasiveNoButton.tsx",
-          "frontend/src/components/valentine/scenes/ProposalScene.tsx",
-          "frontend/src/index.css"
-        ]
-      },
-      {
-        "id": "REQ-9",
-        "summary": "Apply the requested overall style consistently across all scenes: romantic/cute pink/red/white/gold accents, and use Google Fonts with Dancing Script for headings and Poppins for body text.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/index.html",
-          "frontend/src/index.css",
-          "frontend/src/components/valentine/SceneShell.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/index.html",
-          "frontend/src/index.css"
+          "frontend/DEPLOYMENT.md"
         ]
       }
     ]
   },
   "changedFiles": [
     "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
-    "build-template/Dockerfile",
-    "build-template/LICENSE",
-    "build-template/README.md",
-    "build-template/deploy.sh",
-    "build-template/icp.yaml",
-    "build-template/package.json",
-    "build-template/pnpm-lock.yaml",
-    "build-template/pnpm-workspace.yaml",
-    "build-template/scripts/prune-unused-images.js",
-    "build-template/scripts/resize-images.js",
-    "build-template/src/backend/canister.yaml",
-    "build-template/src/backend/system-idl/aaaaa-aa.did",
-    "build-template/src/frontend/canister.yaml",
-    "build-template/src/frontend/components.json",
-    "build-template/src/frontend/env.json",
-    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
-    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
-    "build-template/src/frontend/eslint.config.js",
-    "build-template/src/frontend/package.json",
-    "build-template/src/frontend/postcss.config.js",
-    "build-template/src/frontend/src/components/ui/accordion.tsx",
-    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
-    "build-template/src/frontend/src/components/ui/alert.tsx",
-    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
-    "build-template/src/frontend/src/components/ui/avatar.tsx",
-    "build-template/src/frontend/src/components/ui/badge.tsx",
-    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
-    "build-template/src/frontend/src/components/ui/button.tsx",
-    "build-template/src/frontend/src/components/ui/calendar.tsx",
-    "build-template/src/frontend/src/components/ui/card.tsx",
-    "build-template/src/frontend/src/components/ui/carousel.tsx",
-    "build-template/src/frontend/src/components/ui/chart.tsx",
-    "build-template/src/frontend/src/components/ui/checkbox.tsx",
-    "build-template/src/frontend/src/components/ui/collapsible.tsx",
-    "build-template/src/frontend/src/components/ui/command.tsx",
-    "build-template/src/frontend/src/components/ui/context-menu.tsx",
-    "build-template/src/frontend/src/components/ui/dialog.tsx",
-    "build-template/src/frontend/src/components/ui/drawer.tsx",
-    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
-    "build-template/src/frontend/src/components/ui/form.tsx",
-    "build-template/src/frontend/src/components/ui/hover-card.tsx",
-    "build-template/src/frontend/src/components/ui/input-otp.tsx",
-    "build-template/src/frontend/src/components/ui/input.tsx",
-    "build-template/src/frontend/src/components/ui/label.tsx",
-    "build-template/src/frontend/src/components/ui/menubar.tsx",
-    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
-    "build-template/src/frontend/src/components/ui/pagination.tsx",
-    "build-template/src/frontend/src/components/ui/popover.tsx",
-    "build-template/src/frontend/src/components/ui/progress.tsx",
-    "build-template/src/frontend/src/components/ui/radio-group.tsx",
-    "build-template/src/frontend/src/components/ui/resizable.tsx",
-    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
-    "build-template/src/frontend/src/components/ui/select.tsx",
-    "build-template/src/frontend/src/components/ui/separator.tsx",
-    "build-template/src/frontend/src/components/ui/sheet.tsx",
-    "build-template/src/frontend/src/components/ui/sidebar.tsx",
-    "build-template/src/frontend/src/components/ui/skeleton.tsx",
-    "build-template/src/frontend/src/components/ui/slider.tsx",
-    "build-template/src/frontend/src/components/ui/sonner.tsx",
-    "build-template/src/frontend/src/components/ui/switch.tsx",
-    "build-template/src/frontend/src/components/ui/table.tsx",
-    "build-template/src/frontend/src/components/ui/tabs.tsx",
-    "build-template/src/frontend/src/components/ui/textarea.tsx",
-    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
-    "build-template/src/frontend/src/components/ui/toggle.tsx",
-    "build-template/src/frontend/src/components/ui/tooltip.tsx",
-    "build-template/src/frontend/src/hooks/use-mobile.tsx",
-    "build-template/src/frontend/src/lib/utils.ts",
-    "build-template/src/frontend/tsconfig.json",
-    "build-template/src/frontend/vite.config.js",
-    "build-template/tsconfig.json",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/DEPLOYMENT.md",
-    "frontend/index.css",
-    "frontend/index.html",
-    "frontend/public/assets/generated/hugging-couple-illustration.dim_1200x800.png",
     "frontend/src/App.tsx",
     "frontend/src/backend.d.ts",
     "frontend/src/backend.ts",
-    "frontend/src/components/valentine/ConfettiBurst.tsx",
-    "frontend/src/components/valentine/CrackingHeart.tsx",
-    "frontend/src/components/valentine/EvasiveNoButton.tsx",
-    "frontend/src/components/valentine/GlitchFixTransition.tsx",
-    "frontend/src/components/valentine/HeartParticles.tsx",
-    "frontend/src/components/valentine/HeartRain.tsx",
-    "frontend/src/components/valentine/MusicToggle.tsx",
-    "frontend/src/components/valentine/scenes/Prank404Scene.tsx",
-    "frontend/src/components/valentine/scenes/ProposalScene.tsx",
-    "frontend/src/components/valentine/scenes/VictoryScene.tsx",
-    "frontend/src/config.ts",
+    "frontend/src/components/valentine/AccessGateScreen.tsx",
+    "frontend/src/components/valentine/InvalidLinkScreen.tsx",
     "frontend/src/declarations/backend.did.d.ts",
     "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useInternetIdentity.ts",
-    "frontend/src/index.css",
-    "frontend/src/main.tsx",
-    "frontend/src/ui-summary.json",
-    "frontend/src/utils/StorageClient.ts",
-    "frontend/tailwind.config.js",
+    "frontend/src/hooks/usePasscodeGate.ts",
+    "frontend/src/hooks/useSecretTokenGate.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
